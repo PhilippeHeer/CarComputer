@@ -17,6 +17,9 @@ public class CarComputer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Window newJFrame = new Window();
+        newJFrame.setVisible(true);
     }
     
 }
