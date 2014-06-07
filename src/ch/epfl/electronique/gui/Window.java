@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.epfl.electronique.main.gui;
+package ch.epfl.electronique.gui;
 
 import javax.swing.JLabel;
 import javax.swing.JSlider;

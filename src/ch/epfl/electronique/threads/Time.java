@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.epfl.electronique.main.gui.threads;
+package ch.epfl.electronique.threads;
 
-import ch.epfl.electronique.main.gui.Window;
+import ch.epfl.electronique.gui.Window;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

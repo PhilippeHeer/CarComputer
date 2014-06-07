@@ -5,8 +5,8 @@
  */
 package ch.epfl.electronique.main;
 
-import ch.epfl.electronique.main.gui.threads.Time;
-import ch.epfl.electronique.main.gui.Window;
+import ch.epfl.electronique.threads.Time;
+import ch.epfl.electronique.gui.Window;
 
 /**
  *
