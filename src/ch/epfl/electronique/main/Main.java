@@ -3,23 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package ch.epfl.electronique.main;
 
-package carcomputer;
+import ch.epfl.electronique.main.gui.threads.Time;
+import ch.epfl.electronique.main.gui.Window;
 
 /**
  *
  * @author Philippe Heer
  */
-public class CarComputer {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        Window window = new Window();
         
-        Window newJFrame = new Window();
-        newJFrame.setVisible(true);
+        new Time(window).start();
+
+        window.setVisible(true);
     }
-    
 }
