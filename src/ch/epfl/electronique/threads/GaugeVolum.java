@@ -6,8 +6,6 @@
 package ch.epfl.electronique.threads;
 
 import ch.epfl.electronique.gui.Window;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,17 +13,12 @@ import java.util.logging.Logger;
  *
  * @author Philippe Heer
  */
-public class Time extends Thread {
+public class GaugeVolum extends Thread {
 
     private final Window window;
-    private final SimpleDateFormat df;
 
-    private Date dateobj;
-
-    public Time(Window window) {
+    public GaugeVolum(Window window) {
         this.window = window;
-
-        df = new SimpleDateFormat("HH:mm:ss");
     }
 
     @Override
@@ -37,9 +30,10 @@ public class Time extends Thread {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            dateobj = new Date();
+            // replace value from analog reading of sensor
+            int value = window.getjSlider2().getValue();
 
-            window.getjLabel14().setText(df.format(dateobj));
+            window.getjLabel12().setText(Integer.toString(value));
         }
     }
 }

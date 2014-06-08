@@ -7,6 +7,9 @@ package ch.epfl.electronique.main;
 
 import ch.epfl.electronique.threads.Time;
 import ch.epfl.electronique.gui.Window;
+import ch.epfl.electronique.threads.CapteurInjection;
+import ch.epfl.electronique.threads.EffetHall;
+import ch.epfl.electronique.threads.GaugeVolum;
 
 /**
  *
@@ -21,8 +24,12 @@ public class Main {
         // TODO code application logic here
 
         Window window = new Window();
-        
+
         new Time(window).start();
+
+        new EffetHall(window).start();
+        new GaugeVolum(window).start();
+        new CapteurInjection(window).start();
 
         window.setVisible(true);
     }
