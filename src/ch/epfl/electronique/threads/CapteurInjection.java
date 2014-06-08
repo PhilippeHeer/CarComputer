@@ -32,10 +32,10 @@ public class CapteurInjection extends Thread {
             }
 
             // replace value from analog reading of sensor
-            int value = calculate.getWindow().getjSlider3().getValue();
+            double value = calculate.getWindow().getjSlider3().getValue() / 10.0;
             calculate.setCapteurInject(value, System.currentTimeMillis());
             
-            calculate.getWindow().getjLabel13().setText(Integer.toString(value));
+            calculate.getWindow().getjLabel13().setText(Double.toString(value));
         }
     }
 }

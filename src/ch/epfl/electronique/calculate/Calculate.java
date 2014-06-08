@@ -7,6 +7,7 @@ package ch.epfl.electronique.calculate;
 
 import ch.epfl.electronique.constants.Constants;
 import ch.epfl.electronique.gui.Window;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -14,12 +15,12 @@ import ch.epfl.electronique.gui.Window;
  */
 public class Calculate {
 
-    private int vitesseInstantane = 0;
-    private int consommationInstantane = 0;
-    private int vitesseMoyene = 0;
-    private int consommationMoyenne = 0;
-    private int kilometrageParcours = 0;
-    private int volumeDessenceDisponible = 0;
+    private double vitesseInstantane = 0;
+    private double consommationInstantane = 0;
+    private double vitesseMoyenne = 0;
+    private double consommationMoyenne = 0;
+    private double kilometrageParcours = 0;
+    private double volumeDessenceDisponible = 0;
 
     // given in ms
     private long previousTimeEffetHall = 0;
@@ -29,8 +30,10 @@ public class Calculate {
     private final long beginTime = System.currentTimeMillis();
 
     // kilometres disponible
-    private int autonomieDisponible = 0;
-    private int distancePrevue = 0;
+    private double autonomieDisponible = 0;
+    private double distancePrevue = 0;
+    
+    private final double timeChange = 1000;
 
     private final Window window;
 
@@ -38,46 +41,60 @@ public class Calculate {
         this.window = window;
     }
 
-    public void setEffetHall(int sensorValue, long Actualtime) {
-        vitesseInstantane = (int) (sensorValue * (Constants.WHEEL_RADIUS / 1000) * 3.6);
-
+    public void setEffetHall(int sensorValue, long actualTime) {
+        vitesseInstantane = (int) (sensorValue * (Constants.WHEEL_RADIUS / (double) 1000) * 3.6);
+        
+        if (previousTimeEffetHall == 0) {
+            previousTimeEffetHall = actualTime;
+        }
+        
+        kilometrageParcours += vitesseInstantane * (actualTime - previousTimeEffetHall) / 3600000;
+        
+        double timeSinceBegin = (previousTimeEffetHall - beginTime) / timeChange;
+        double timeSinceLast = (actualTime - previousTimeEffetHall) / timeChange;
+        
+        vitesseMoyenne = ( vitesseMoyenne * timeSinceBegin + vitesseInstantane * timeSinceLast ) / (timeSinceBegin + timeSinceLast);
+        
+        previousTimeEffetHall = actualTime;
+        
         display();
     }
 
-    public void setJaugeVolume(int sensorValue, long actualTime) {
-        if (previousTimeJaugeVolum == 0) {
-            previousTimeJaugeVolum = System.currentTimeMillis();
-        }
-        
-        consommationMoyenne = (int) (((previousTimeJaugeVolum - beginTime) / 1000) * consommationMoyenne + ((actualTime - previousTimeJaugeVolum) / 1000) * sensorValue);
-        
-        previousTimeJaugeVolum = actualTime;
-
-        
+    public void setJaugeVolume(int sensorValue, long actualTime) {        
         volumeDessenceDisponible = (int) ((double) sensorValue * ((double) Constants.TANK_VOLUME / (double) Constants.TANK_HEIGHT));
 
         if (consommationMoyenne != 0) {
-            autonomieDisponible = volumeDessenceDisponible / consommationMoyenne;
+            autonomieDisponible = volumeDessenceDisponible / (consommationMoyenne / 100);
         }
 
         display();
     }
 
-    public void setCapteurInject(int sensorValue, long Actualtime) {
-        consommationInstantane = sensorValue / 1000;
-
+    public void setCapteurInject(double sensorValue, long actualTime) {
+        consommationInstantane = sensorValue * 3.6 / vitesseInstantane * 100;
+        
+        if (previousTimeCapteurInjection == 0) {
+            previousTimeCapteurInjection = actualTime;
+        }
+        
+        double timeSinceBegin = (previousTimeCapteurInjection - beginTime) / timeChange;
+        double timeSinceLast = (actualTime - previousTimeCapteurInjection) / timeChange;
+        
+        consommationMoyenne = ( consommationMoyenne * timeSinceBegin + consommationInstantane * timeSinceLast ) / (timeSinceBegin + timeSinceLast);
+        
+        previousTimeCapteurInjection = actualTime;
         display();
     }
 
     private synchronized void display() {
-        window.getjTextField1().setText(Integer.toString(vitesseInstantane));
-        window.getjTextField2().setText(Integer.toString(consommationInstantane));
-        window.getjTextField3().setText(Integer.toString(kilometrageParcours));
-        window.getjTextField4().setText(Integer.toString(vitesseMoyene));
-        window.getjTextField5().setText(Integer.toString(consommationMoyenne));
-        window.getjTextField6().setText(Integer.toString(volumeDessenceDisponible));
-        window.getjTextField7().setText(Integer.toString(autonomieDisponible));
-        window.getjTextField8().setText(Integer.toString(distancePrevue));
+        window.getjTextField1().setText(new DecimalFormat("##.#").format(vitesseInstantane));
+        window.getjTextField2().setText(new DecimalFormat("##.#").format(consommationInstantane));
+        window.getjTextField3().setText(new DecimalFormat("##.#").format(kilometrageParcours));
+        window.getjTextField4().setText(new DecimalFormat("##.#").format(vitesseMoyenne));
+        window.getjTextField5().setText(new DecimalFormat("##.#").format(consommationMoyenne));
+        window.getjTextField6().setText(new DecimalFormat("##.#").format(volumeDessenceDisponible));
+        window.getjTextField7().setText(new DecimalFormat("##.#").format(autonomieDisponible));
+        window.getjTextField8().setText(new DecimalFormat("##.#").format(distancePrevue));
     }
 
     public Window getWindow() {

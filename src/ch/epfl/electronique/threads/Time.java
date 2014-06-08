@@ -25,7 +25,7 @@ public class Time extends Thread {
     public Time(Calculate calculate) {
         this.calculate = calculate;
 
-        df = new SimpleDateFormat("HH:mm:ss");
+        df = new SimpleDateFormat("dd/MM/YY  HH:mm:ss");
     }
 
     @Override
