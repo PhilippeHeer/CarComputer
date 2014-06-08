@@ -8,6 +8,7 @@ package ch.epfl.electronique.gui;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import ch.epfl.electronique.threads.Time;
 
 /**
  *
@@ -18,8 +19,15 @@ public class Window extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    
+    private Time time;
+    
     public Window() {
         initComponents();
+    }
+    
+    public void setTime(Time time){
+        this.time = time;
     }
 
     /**
@@ -420,14 +428,17 @@ public class Window extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        time.startChrono();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        time.stopChrono();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        time.restartChrono();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void setjLabel1(JLabel jLabel1) {

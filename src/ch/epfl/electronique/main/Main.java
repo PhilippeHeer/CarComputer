@@ -27,12 +27,14 @@ public class Main {
         Window window = new Window();
         Calculate calculate = new Calculate(window);
 
-        new Time(calculate).start();
+        Time time = new Time(calculate);
+        time.start();
 
         new EffetHall(calculate).start();
         new JaugeVolum(calculate).start();
         new CapteurInjection(calculate).start();
 
         window.setVisible(true);
+        window.setTime(time);
     }
 }

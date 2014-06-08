@@ -23,7 +23,13 @@ public class Time extends Thread {
 
     private Date dateobj1;
     
+    private long miliseconds = 0;
     private long chronoZero = System.currentTimeMillis();
+    private long timeStopped = 0;
+    private long lastTimeStopped = 0;
+    
+    private boolean isWorking = true;
+    private boolean restarted = false;
 
     public Time(Calculate calculate) {
         this.calculate = calculate;
@@ -31,6 +37,31 @@ public class Time extends Thread {
         df1 = new SimpleDateFormat("dd/MM/YY  HH:mm:ss");
     }
 
+    public void startChrono(){
+        if(!isWorking && !restarted){
+            timeStopped += System.currentTimeMillis() - lastTimeStopped;
+        }
+        if(restarted){
+            chronoZero = System.currentTimeMillis();
+            restarted = false;
+        }
+        isWorking = true;
+    }
+    
+    public void stopChrono(){
+        if(isWorking){
+            lastTimeStopped = System.currentTimeMillis();
+        }
+        isWorking = false;
+    }
+    
+    public void restartChrono(){
+        chronoZero = System.currentTimeMillis();
+        timeStopped = 0;
+        miliseconds = 0;
+        restarted = true;
+    }
+    
     @Override
     public void run() {
         while (true) {
@@ -44,7 +75,9 @@ public class Time extends Thread {
 
             calculate.getWindow().getjLabel14().setText(df1.format(dateobj1));
             
-            long miliseconds = (System.currentTimeMillis() - chronoZero);
+            if(isWorking) {
+                miliseconds = (System.currentTimeMillis() - chronoZero) - timeStopped;
+            }
             
             int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(miliseconds);
             int seconds = (int) TimeUnit.MILLISECONDS.toSeconds(miliseconds);
