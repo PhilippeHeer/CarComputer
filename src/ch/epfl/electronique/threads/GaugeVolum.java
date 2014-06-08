@@ -5,6 +5,7 @@
  */
 package ch.epfl.electronique.threads;
 
+import ch.epfl.electronique.constants.Constants;
 import ch.epfl.electronique.gui.Window;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ public class GaugeVolum extends Thread {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(Constants.SLEEP);
             } catch (InterruptedException ex) {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }
