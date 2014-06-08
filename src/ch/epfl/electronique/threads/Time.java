@@ -6,7 +6,6 @@
 package ch.epfl.electronique.threads;
 
 import ch.epfl.electronique.gui.Window;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
