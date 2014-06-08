@@ -5,6 +5,7 @@
  */
 package ch.epfl.electronique.threads;
 
+import ch.epfl.electronique.calculate.Calculate;
 import ch.epfl.electronique.constants.Constants;
 import ch.epfl.electronique.gui.Window;
 import java.util.logging.Level;
@@ -14,12 +15,12 @@ import java.util.logging.Logger;
  *
  * @author Philippe Heer
  */
-public class GaugeVolum extends Thread {
+public class JaugeVolum extends Thread {
 
-    private final Window window;
+    private final Calculate calculate;
 
-    public GaugeVolum(Window window) {
-        this.window = window;
+    public JaugeVolum(Calculate calculate) {
+        this.calculate = calculate;
     }
 
     @Override
@@ -30,11 +31,12 @@ public class GaugeVolum extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            // replace value from analog reading of sensor
-            int value = window.getjSlider2().getValue();
 
-            window.getjLabel12().setText(Integer.toString(value));
+            // replace value from analog reading of sensor
+            int value = calculate.getWindow().getjSlider2().getValue();
+            calculate.setJaugeVolume(value, System.currentTimeMillis());
+            
+            calculate.getWindow().getjLabel12().setText(Integer.toString(value));
         }
     }
 }

@@ -5,8 +5,8 @@
  */
 package ch.epfl.electronique.threads;
 
+import ch.epfl.electronique.calculate.Calculate;
 import ch.epfl.electronique.constants.Constants;
-import ch.epfl.electronique.gui.Window;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,11 +16,10 @@ import java.util.logging.Logger;
  */
 public class EffetHall extends Thread {
 
-    private Window window;
-    private int value;
+    private final Calculate calculate;
 
-    public EffetHall(Window window) {
-        this.window = window;
+    public EffetHall(Calculate calculate) {
+        this.calculate = calculate;
     }
 
     @Override
@@ -33,11 +32,10 @@ public class EffetHall extends Thread {
             }
 
             // replace value from analog reading of sensor
-            value = window.getjSlider1().getValue();
-
-            window.getjLabel11().setText(Integer.toString(value));
+            int value = calculate.getWindow().getjSlider1().getValue();
+            calculate.setEffetHall(value, System.currentTimeMillis());
             
-            System.out.println((value / (2 * Math.PI) * 360) / (2 * Math.PI * Constants.WHEEL_RADIUS));
+            calculate.getWindow().getjLabel11().setText(Integer.toString(value));
         }
     }
 }

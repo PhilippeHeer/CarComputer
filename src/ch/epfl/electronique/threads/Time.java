@@ -5,7 +5,7 @@
  */
 package ch.epfl.electronique.threads;
 
-import ch.epfl.electronique.gui.Window;
+import ch.epfl.electronique.calculate.Calculate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -17,13 +17,13 @@ import java.util.logging.Logger;
  */
 public class Time extends Thread {
 
-    private final Window window;
+    private final Calculate calculate;
     private final SimpleDateFormat df;
 
     private Date dateobj;
 
-    public Time(Window window) {
-        this.window = window;
+    public Time(Calculate calculate) {
+        this.calculate = calculate;
 
         df = new SimpleDateFormat("HH:mm:ss");
     }
@@ -36,10 +36,10 @@ public class Time extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             dateobj = new Date();
 
-            window.getjLabel14().setText(df.format(dateobj));
+            calculate.getWindow().getjLabel14().setText(df.format(dateobj));
         }
     }
 }

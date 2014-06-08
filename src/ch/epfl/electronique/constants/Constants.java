@@ -12,8 +12,15 @@ package ch.epfl.electronique.constants;
  */
 public abstract class Constants {
     
+    // given in microseconds
     public static final int SLEEP = 10;
     
-    // Radius given in mm
+    // given in mm
     public static final int WHEEL_RADIUS = 323;
+    
+    // given in l
+    public static final int TANK_VOLUME = 60;
+    
+    // given in mm
+    public static final int TANK_HEIGHT = 300;
 }

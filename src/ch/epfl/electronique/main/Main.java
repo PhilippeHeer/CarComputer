@@ -5,11 +5,12 @@
  */
 package ch.epfl.electronique.main;
 
-import ch.epfl.electronique.threads.Time;
+import ch.epfl.electronique.calculate.Calculate;
 import ch.epfl.electronique.gui.Window;
 import ch.epfl.electronique.threads.CapteurInjection;
 import ch.epfl.electronique.threads.EffetHall;
-import ch.epfl.electronique.threads.GaugeVolum;
+import ch.epfl.electronique.threads.JaugeVolum;
+import ch.epfl.electronique.threads.Time;
 
 /**
  *
@@ -24,12 +25,13 @@ public class Main {
         // TODO code application logic here
 
         Window window = new Window();
+        Calculate calculate = new Calculate(window);
 
-        new Time(window).start();
+        new Time(calculate).start();
 
-        new EffetHall(window).start();
-        new GaugeVolum(window).start();
-        new CapteurInjection(window).start();
+        new EffetHall(calculate).start();
+        new JaugeVolum(calculate).start();
+        new CapteurInjection(calculate).start();
 
         window.setVisible(true);
     }

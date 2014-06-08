@@ -5,8 +5,8 @@
  */
 package ch.epfl.electronique.threads;
 
+import ch.epfl.electronique.calculate.Calculate;
 import ch.epfl.electronique.constants.Constants;
-import ch.epfl.electronique.gui.Window;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  */
 public class CapteurInjection extends Thread {
 
-    private final Window window;
+    private final Calculate calculate;
 
-    public CapteurInjection(Window window) {
-        this.window = window;
+    public CapteurInjection(Calculate calculate) {
+        this.calculate = calculate;
     }
 
     @Override
@@ -30,11 +30,12 @@ public class CapteurInjection extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            // replace value from analog reading of sensor
-            int value = window.getjSlider3().getValue();
 
-            window.getjLabel13().setText(Integer.toString(value));
+            // replace value from analog reading of sensor
+            int value = calculate.getWindow().getjSlider3().getValue();
+            calculate.setCapteurInject(value, System.currentTimeMillis());
+            
+            calculate.getWindow().getjLabel13().setText(Integer.toString(value));
         }
     }
 }
