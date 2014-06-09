@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/threads/JaugeVolum.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/threads/Time.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/calculate/Calculate.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/main/Main.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/threads/CapteurInjection.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/gui/Window.java</file>
-            <file>file:/C:/Users/Patrice/Documents/EPFL/IC6/Git/CarComputer/src/ch/epfl/electronique/constants/Constants.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/threads/Time.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/constants/Constants.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/threads/CapteurInjection.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/threads/JaugeVolum.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/main/Main.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/calculate/Calculate.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/gui/Window.java</file>
+            <file>file:/C:/Users/Philippe%20Heer/Documents/NetBeansProjects/CarComputer/src/ch/epfl/electronique/threads/EffetHall.java</file>
         </group>
     </open-files>
 </project-private>

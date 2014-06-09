@@ -26,7 +26,7 @@ public class CapteurInjection extends Thread {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(Constants.SLEEP);
+                Thread.sleep(Constants.RASTER_FREQUENCY);
             } catch (InterruptedException ex) {
                 Logger.getLogger(EffetHall.class.getName()).log(Level.SEVERE, null, ex);
             }

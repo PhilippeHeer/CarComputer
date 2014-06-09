@@ -13,7 +13,7 @@ package ch.epfl.electronique.constants;
 public abstract class Constants {
     
     // given in microseconds
-    public static final int SLEEP = 10;
+    public static final int RASTER_FREQUENCY = 10;
     
     // given in mm
     public static final int WHEEL_RADIUS = 323;
